@@ -19,8 +19,8 @@ namespace OData.AccessViolationException
         {
             services.AddDbContext<Context>(configuration =>
             {
-                // configuration.UseInMemoryDatabase("Example");
-                configuration.UseSqlServer("Server=.;Database=ODataIssue;Trusted_Connection=true");
+                configuration.UseInMemoryDatabase("Example");
+                // configuration.UseSqlServer("Server=.;Database=ODataIssue;Trusted_Connection=true");
             });
 
             services.AddOData();
@@ -30,7 +30,7 @@ namespace OData.AccessViolationException
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, Context context)
         {
-            context.Database.Migrate();
+            // context.Database.Migrate();
 
             context.People.RemoveRange(context.People);
             context.SaveChanges();
